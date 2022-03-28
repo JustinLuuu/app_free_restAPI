@@ -3,13 +3,13 @@ const EntityServices = require("../services/entityServices");
 
 const entitiesServices = new EntityServices('products');
 
-const getProductsAction = async (req, res = res) => {
+const getProductsAction = async (req, res) => {
     try {
         const products = await entitiesServices.getAll();
-        Response.success(res, 200, 'Product list', products);
+        Response(res, 200, 'Product list', products);
     } catch (error) {
         console.log(error);
-        Response.error(res);
+        Response(res, 500, 'Internal server error');
     }
 }
 
@@ -18,14 +18,12 @@ const getProductAction = async (req, res) => {
         const { id } = req.params;
         const product = await entitiesServices.getById(id);
 
-        Response.success(
-            res,
-            product ? 200 : 404,
-            `${product ? `Product ${id}` : 'No product found'}`,
-            product ? product : {});
+        product ? 
+        Response(res, 200, `Product [${id}] `, product) : 
+        Response(res, 404, `Product [${id}] not found `, product); 
     } catch (error) {
         console.log(error);
-        Response.error(res);
+        Response(res, 500, 'Internal server error');
     }
 }
 
@@ -33,23 +31,25 @@ const createProductAction = async (req, res) => {
     try {
         const { body: productData } = req;
         const insertedId = await entitiesServices.create(productData);
-        Response.success(res, 201, 'Product created', insertedId);
+
+        Response(res, 201, 'Product created', insertedId);
     } catch (error) {
         console.log(error);
-        Response.error(res);
+        Response(res, 500, 'Internal server error');
     }
 }
 
 const deleteProductAction = async (req, res) => {
     try {
         const { id } = req.params;
-        const isDeleted = await entitiesServices.delete(id);
-        Response.success(res, 200, `${isDeleted ?
-            'Successfully deleted one product' :
-            'No products matched the query. Deleted 0 products'}`);
+        const wasDeleted = await entitiesServices.delete(id);
+        
+        Response(res, 200, `${wasDeleted ?
+        'Successfully deleted one product' :
+        '0 products were deleted'}`, wasDeleted && id);
     } catch (error) {
         console.log(error);
-        Response.error(res);
+        Response(res, 500, 'Internal server error');
     }
 }
 
