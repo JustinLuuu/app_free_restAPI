@@ -4,6 +4,7 @@ const { validateFields } = require('../middlewares/validate-fields');
 const { ProductController:
 { getProductsAction, getProductAction, createProductAction, deleteProductAction } }
 = require('../controllers/ProductController');
+const { checkExistFields } = require('../middlewares/check-exist-fields');
 
 const routerProducts = express.Router();
 
@@ -11,7 +12,8 @@ const routerProducts = express.Router();
 routerProducts.get('/', getProductsAction);
 routerProducts.get('/:id', getProductAction);
 routerProducts.delete('/:id', deleteProductAction);
-routerProducts.post('/', [
+routerProducts.post('/', [    
+    checkExistFields('name', 'price', 'amount'),
     check('name', 'Name is required').not().isEmpty(),
     check('name', 'Name must have at least 3 characters').isLength({min: 3}),
     check('price', 'Price field is numeric').isNumeric(),
