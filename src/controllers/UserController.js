@@ -32,7 +32,22 @@ const createUserAction = async (req, res) => {
         const { body: userData } = req;
         const insertedId = await entitiesServices.create(userData);
         
-        Response(res, 200, `User created`, insertedId);
+        Response(res, 200, 'User created', insertedId);
+    } catch (error) {
+        console.log(error);
+        Response(res, 500, 'Internal server error');
+    }
+}
+
+const updateUserAction = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { body: userDataUpdate } = req;
+        const wasUpdated = await entitiesServices.update(userDataUpdate, id);
+        
+        Response(res, 200, `${wasUpdated ? 
+        `Successfully updated one user` :
+        'No user updated'}`, wasUpdated && id);
     } catch (error) {
         console.log(error);
         Response(res, 500, 'Internal server error');
@@ -55,5 +70,5 @@ const deleteUserAction = async (req, res) => {
 
 
 module.exports.UserController = {
-    getUsersAction, getUserAction, createUserAction, deleteUserAction
+    getUsersAction, getUserAction, createUserAction, updateUserAction, deleteUserAction
 }

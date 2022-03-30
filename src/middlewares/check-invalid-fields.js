@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator');
 
-const validateFields = (req, res, next) => {
+const checkInvalidFields = (req, res, next) => {
 
     //extract the errors that are caused in the petition
     const errors = validationResult(req);
@@ -16,5 +16,5 @@ const validateFields = (req, res, next) => {
 
 
 module.exports = {
-    validateFields
+    checkInvalidFields
 }
