@@ -1,5 +1,3 @@
-const { Response } = require("../common/response");
-
 const getControlMenuAction = (req, res)=> {
     const menu = {
         products: `https://${req.headers.host}/api/products`,
