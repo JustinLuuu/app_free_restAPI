@@ -11,7 +11,7 @@ const checkInvalidFields = (req, res, next) => {
         });
     }
 
-    next();
+   next();
 }
 
 

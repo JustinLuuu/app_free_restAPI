@@ -29,7 +29,7 @@ class EntityServices {
         const options = {upsert: false};
         const updateDoc = { $set: dataUpdate};
 
-        const result = await this.collection.updateOne(filter, options, updateDoc);
+        const result = await this.collection.updateOne(filter, updateDoc, options);
         return result.modifiedCount === 1;
     }
 
