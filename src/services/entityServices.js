@@ -26,8 +26,8 @@ class EntityServices {
     async update(dataUpdate, id) {
         this.collection = await Database(this.collectionName);
         const filter = {_id: ObjectId(id)};
-        const options = {upsert: false};
         const updateDoc = { $set: dataUpdate};
+        const options = {upsert: false};
 
         const result = await this.collection.updateOne(filter, updateDoc, options);
         return result.modifiedCount === 1;
