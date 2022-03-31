@@ -5,6 +5,7 @@ const { checkUnexpectedFields } = require('../middlewares/check-unexpected-field
 const { ProductController:
     { getProductsAction, getProductAction, createProductAction, deleteProductAction } }
     = require('../controllers/ProductController');
+const { checkEmptyRequestBody } = require('../middlewares/check-empty-body');
 
 const routerProducts = express.Router();
 
@@ -13,6 +14,7 @@ routerProducts.get('/', getProductsAction);
 routerProducts.get('/:id', getProductAction);
 routerProducts.delete('/:id', deleteProductAction);
 routerProducts.post('/', [
+    checkEmptyRequestBody,
     checkUnexpectedFields('name', 'price', 'amount'),
     check('name', 'Name field is required').not().isEmpty(),
     check('name', 'Name field must have at least 3 characters').isLength({ min: 3 }),

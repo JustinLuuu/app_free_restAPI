@@ -30,13 +30,13 @@ class EntityServices {
         const options = {upsert: false};
 
         const result = await this.collection.updateOne(filter, updateDoc, options);
-        return result.modifiedCount === 1;
+        return (result.modifiedCount === 1);
     }
 
     async delete(id) {
         this.collection = await Database(this.collectionName);
         const result = await this.collection.deleteOne({ _id: ObjectId(id) });
-        return result.deletedCount === 1;
+        return (result.deletedCount === 1);
     }
 }
 
