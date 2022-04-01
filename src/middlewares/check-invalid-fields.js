@@ -10,7 +10,6 @@ const checkInvalidFields = (req, res, next) => {
             errors: errors.mapped()
         });
     }
-
    next();
 }
 

@@ -1,5 +1,5 @@
 const { MongoClient } = require('mongodb');
-const { Config: { mongoUri, mongoDbName } } = require('../config/index');
+const { Config: { mongoUri, mongoDbName } } = require('../config/config');
 
 let connection = null;
 

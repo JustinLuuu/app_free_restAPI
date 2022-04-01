@@ -19,8 +19,8 @@ const getUserAction = async (req, res) => {
         const user = await entitiesServices.getById(id);
 
         user ? 
-        Response(res, 200, `User [${id}]`, user) : 
-        Response(res, 404, `User [${id}] not found`);
+        Response(res, 200, `User ${id}`, user) : 
+        Response(res, 404, `There is'nt an user with id: ${id}`);
     } catch (error) {
         console.log(error);
         Response(res, 500, 'Internal server error');
@@ -47,7 +47,7 @@ const updateUserAction = async (req, res) => {
         
         Response(res, 200, `${wasUpdated ? 
         `Successfully updated one user` :
-        'No user updated'}`, wasUpdated && id);
+        '0 users were updated'}`, wasUpdated ? id : null);
     } catch (error) {
         console.log(error);
         Response(res, 500, 'Internal server error');
@@ -61,7 +61,7 @@ const deleteUserAction = async (req, res) => {
 
         Response(res, 200, `${wasDeleted ? 
         'Successfully deleted one user' : 
-        'No user matched the query. Deleted 0 users'}`, wasDeleted && id);
+        '0 users were deleted'}`, wasDeleted ? id : null);
     } catch (error) {
         console.log(error);
         Response(res, 500, 'Internal server error');

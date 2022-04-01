@@ -1,4 +1,4 @@
-const { Database } = require('../database/index');
+const { Database } = require('../database/database');
 const { ObjectId } = require('mongodb');
 
 class EntityServices {

@@ -2,17 +2,18 @@ const express = require('express');
 const { check, body } = require('express-validator');
 const { checkInvalidFields } = require('../middlewares/check-invalid-fields');
 const { checkUnexpectedFields } = require('../middlewares/check-unexpected-fields');
+const { checkEmptyRequestBody } = require('../middlewares/check-empty-body');
+const { checkValidBsonId } = require('../middlewares/check-valid-bsonidjs');
 const { UserController: { getUsersAction, getUserAction, createUserAction, updateUserAction, deleteUserAction
 } } = require('../controllers/UserController');
-const { checkEmptyRequestBody } = require('../middlewares/check-empty-body');
 
 
 const routerUsers = express.Router();
 
 // endpoints for users 
 routerUsers.get('/', getUsersAction);
-routerUsers.get('/:id', getUserAction);
-routerUsers.delete('/:id', deleteUserAction);
+routerUsers.get('/:id', checkValidBsonId, getUserAction);
+routerUsers.delete('/:id', checkValidBsonId, deleteUserAction);
 
 routerUsers.post('/', [
     checkEmptyRequestBody,
@@ -27,8 +28,8 @@ routerUsers.post('/', [
     checkInvalidFields
 ], createUserAction);
   
-
 routerUsers.put('/:id', [
+    checkValidBsonId,
     checkEmptyRequestBody,
     checkUnexpectedFields('name', 'age', 'number'),
 

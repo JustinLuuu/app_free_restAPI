@@ -6,9 +6,9 @@ const getControlMenuAction = (req, res)=> {
     res.status(200).send(menu);
 }
 
-const catchControlAll = (req, res) => {
+const catchControlAction = (req, res) => {
     res.status(400).send('Route not found or method not allowed');
 }
 
 
-module.exports.ControlController = {getControlMenuAction, catchControlAll};
+module.exports.ControlController = {getControlMenuAction, catchControlAction};
