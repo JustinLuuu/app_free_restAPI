@@ -18,14 +18,18 @@ routerProducts.delete('/:id', checkValidBsonId, deleteProductAction);
 routerProducts.post('/', [
     checkEmptyRequestBody,
     checkUnexpectedFields('name', 'price', 'amount'),
-    check('name', 'Name field is required').not().isEmpty(),
-    check('name', 'Name field must have at least 3 characters').isLength({ min: 3 }),
-    check('price', 'Price field is required').not().isEmpty(),
-    check('price', 'Price field is numeric').isNumeric(),
-    check('price', 'Price field must be greater than or equal to 1').isFloat({ min: 1 }),
-    check('amount', 'Amount field is required').not().isEmpty(),
-    check('amount', 'Amount field is numeric').isNumeric(),
-    check('amount', 'Amount field must be greater than or equal to 0').isInt({ min: 0 }),
+
+    check('name', 'Name field is required').not().isEmpty()
+    .isLength({min:3}).withMessage('Name field must have at least 3 characters'),
+
+    check('price', 'Price field is required').not().isEmpty()
+    .isNumeric().withMessage('Price field is numeric')
+    .isInt({min:1}).withMessage('Price field must be greater than or equal to 1'),
+
+    check('amount', 'Amount field is required').not().isEmpty()
+    .isNumeric().withMessage('Amount field is numeric')
+    .isInt({min:0}).withMessage('Amount field must be greater than or equal to 0'),
+
     checkInvalidFields
 ], createProductAction);
 

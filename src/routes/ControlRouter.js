@@ -3,9 +3,12 @@ const { ControlController: { getControlMenuAction, catchControlAction } } = requ
 
 const controlApiRouter = express.Router();
 
-// endpoints for general
-controlApiRouter.all('*', catchControlAction);
-controlApiRouter.get('/', (_, res) => { res.redirect('/api') });
+// endpoints for landing and general
+controlApiRouter.get('/', (_, res) => { res.redirect('https://google.com') });
 controlApiRouter.get('/api', getControlMenuAction);
+
+// must be the last to be configured, cause it may
+// catch the request as not required and the referenced action will response
+controlApiRouter.all('*', catchControlAction); 
 
 module.exports = controlApiRouter;
