@@ -2,7 +2,7 @@ const express = require('express');
 const {Config: {port}} = require('./src/config/config');
 const ProductsApiRouter = require('./src/routes/ProductRouter');
 const UsersApiRouter = require('./src/routes/UserRouter');
-const controlApiRouter = require('./src/routes/ControlRouter');
+const generalApiRouter = require('./src/routes/GeneralRouter');
 
 const app = express();
 app.use(express.json());
@@ -10,7 +10,7 @@ app.use(express.json());
 // routes
 app.use('/api/products', ProductsApiRouter);
 app.use('/api/users', UsersApiRouter);
-app.use('/', controlApiRouter);
+app.use('/', generalApiRouter);
 
 // settings
 app.set('view engine', 'ejs');

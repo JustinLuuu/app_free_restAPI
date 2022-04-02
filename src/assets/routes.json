@@ -1,0 +1,4 @@
+{
+    "products": "https://{hostname}/api/products",
+    "users": "https://{hostname}/api/users"
+}

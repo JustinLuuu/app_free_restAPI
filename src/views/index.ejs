@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html, body { text-align: center; }
+        h1{background-color: aqua;}
+        ul{list-style: none;}
+        li{ font-size: 2em;}
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Available routes on this domain</h1>
+
+    <ul>
+        <% for(const route in menuRoutes) { 
+            %>
+                <li>
+                    <%= route %>: <a href="<%= menuRoutes[route] %>"><%= menuRoutes[route] %></a> <br /> 
+                </li>
+            <% 
+           } 
+        %>
+    </ul>
+</body>
+
+</html>
