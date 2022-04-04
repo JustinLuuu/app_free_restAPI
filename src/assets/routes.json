@@ -1,4 +1,20 @@
-{
-    "products": "https://{hostname}/api/products",
-    "users": "https://{hostname}/api/users"
-}
+[
+    {
+        "name": "users",
+        "methods": ["GET", "GET/:id", "POST", "PUT:/id", "DELETE/:id"],
+        "sampleData": {
+            "name": "Justin Jr. Minaya",
+            "age": 20,
+            "number": "0499817752"
+        }
+    },
+    {
+        "name": "products",
+        "methods": ["GET", "GET/:id", "POST", "PUT:/id", "DELETE/:id"],
+        "sampleData": {
+            "name": "Wireless repeater",
+            "price": 200,
+            "amount": 20
+        }
+    }
+]

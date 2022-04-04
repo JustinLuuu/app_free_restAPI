@@ -52,4 +52,6 @@ routerProducts.put('/:id', [
     checkInvalidFields
 ], updateProductAction);
 
+routerProducts.all('/', (_, res)=> {res.status(405).send('Method not allowed')})
+
 module.exports = routerProducts;

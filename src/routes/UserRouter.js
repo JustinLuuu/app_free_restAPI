@@ -52,4 +52,6 @@ routerUsers.put('/:id', [
     checkInvalidFields
 ], updateUserAction);
 
+routerUsers.all('/', (_, res)=> {res.status(405).send('Method not allowed')})
+
 module.exports = routerUsers;

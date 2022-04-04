@@ -1,16 +1,21 @@
-const returnMenuRoutes = require("../common/returnMenuRoutes");
+const returnRoutesData = require("../common/returnRoutesData");
 
-const getGeneralMenuAction = (req, res) => { 
-    res.status(200).send(returnMenuRoutes(req.headers.host));
+const getGeneralMenuAction = (req, res) => {
+    const routesWithName = returnRoutesData().reduce((objRoutes, route) => (
+    { ...objRoutes, [route.name]: `https://${req.headers.host}/api/${route.name}` } ) 
+    , {});
+
+    res.status(200).send(routesWithName);
 }
 
 const getGeneralPageAction = (req, res) => {
-    const menuRoutes = returnMenuRoutes(req.headers.host);
-    res.render('../src/views/', {menuRoutes});
+    const routesData = returnRoutesData();
+    const hostname = req.headers.host;
+    res.render('../src/views/', { routesData, hostname });
 }
 
-const catchGeneralAction = (req, res) => {
-    res.status(400).send('Route not found or method  not allowed');
+const catchGeneralNotFoundAction = (req, res) => {
+    res.status(404).send('Route not found');
 }
 
-module.exports.GeneralController = { getGeneralMenuAction, getGeneralPageAction, catchGeneralAction };
+module.exports.GeneralController = { getGeneralMenuAction, getGeneralPageAction, catchGeneralNotFoundAction };

@@ -1,5 +1,6 @@
 const express = require('express');
-const { GeneralController: { getGeneralMenuAction, getGeneralPageAction, catchGeneralAction } } = require('../controllers/GeneralController');
+const { GeneralController: { getGeneralMenuAction, getGeneralPageAction,
+catchGeneralNotFoundAction } } = require('../controllers/GeneralController');
 
 const generalApiRouter = express.Router();
 
@@ -9,6 +10,6 @@ generalApiRouter.get('/api', getGeneralMenuAction);
 
 // must be the last to be configured, cause it may
 // catch the request as not required and the referenced action will response
-generalApiRouter.all('*', catchGeneralAction); 
+generalApiRouter.all('*', catchGeneralNotFoundAction); 
 
 module.exports = generalApiRouter;
