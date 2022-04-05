@@ -4,15 +4,15 @@ const { checkInvalidFields } = require('../middlewares/check-invalid-fields');
 const { checkUnexpectedFields } = require('../middlewares/check-unexpected-fields');
 const { checkEmptyRequestBody } = require('../middlewares/check-empty-body');
 const { checkValidBsonId } = require('../middlewares/check-valid-bsonidjs');
-const { PersonController: { getAllPeopleAction, getPersonAction, createPersonAction,
+const { PersonController: { getPersonsAction, getPersonAction, createPersonAction,
  updatePersonAction, deletePersonAction
 } } = require('../controllers/PersonController');
 
 
 const routerPersons = express.Router();
 
-// endpoints for persons 
-routerPersons.get('/', getAllPeopleAction);
+// endpoints for people 
+routerPersons.get('/', getPersonsAction);
 routerPersons.get('/:id', checkValidBsonId, getPersonAction);
 routerPersons.delete('/:id', checkValidBsonId, deletePersonAction);
 

@@ -1,9 +1,9 @@
 const { Response } = require("../common/response");
 const EntityServices = require("../services/entityServices");
 
-const entitiesServices = new EntityServices('people');
+const entitiesServices = new EntityServices('persons');
 
-const getAllPeopleAction = async (req, res) => {
+const getPersonsAction = async (req, res) => {
     try {
         const people = await entitiesServices.getAll();        
         Response(res, 200, 'People list', people);
@@ -70,5 +70,5 @@ const deletePersonAction = async (req, res) => {
 
 
 module.exports.PersonController = {
-    getAllPeopleAction, getPersonAction, createPersonAction, updatePersonAction, deletePersonAction
+    getPersonsAction, getPersonAction, createPersonAction, updatePersonAction, deletePersonAction
 }
