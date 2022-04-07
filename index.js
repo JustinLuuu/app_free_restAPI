@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const {Config: {port}} = require('./src/config/config');
 const ProductsApiRouter = require('./src/routes/ProductRouter');
-const UsersApiRouter = require('./src/routes/UserRouter');
+const PersonsApiRouter = require('./src/routes/PersonRouter');
 const generalApiRouter = require('./src/routes/GeneralRouter');
 
 const app = express();
@@ -12,7 +12,7 @@ app.use(express.json());
 
 // routes
 app.use('/api/products', ProductsApiRouter);
-app.use('/api/users', UsersApiRouter);
+app.use('/api/persons', PersonsApiRouter);
 app.use('/', generalApiRouter);
 
 // settings

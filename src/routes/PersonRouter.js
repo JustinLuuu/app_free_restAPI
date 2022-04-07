@@ -4,18 +4,19 @@ const { checkInvalidFields } = require('../middlewares/check-invalid-fields');
 const { checkUnexpectedFields } = require('../middlewares/check-unexpected-fields');
 const { checkEmptyRequestBody } = require('../middlewares/check-empty-body');
 const { checkValidBsonId } = require('../middlewares/check-valid-bsonidjs');
-const { UserController: { getUsersAction, getUserAction, createUserAction, updateUserAction, deleteUserAction
-} } = require('../controllers/UserController');
+const { PersonController: { getPersonsAction, getPersonAction, createPersonAction,
+ updatePersonAction, deletePersonAction
+} } = require('../controllers/PersonController');
 
 
-const routerUsers = express.Router();
+const routerPersons = express.Router();
 
-// endpoints for users 
-routerUsers.get('/', getUsersAction);
-routerUsers.get('/:id', checkValidBsonId, getUserAction);
-routerUsers.delete('/:id', checkValidBsonId, deleteUserAction);
+// endpoints for people 
+routerPersons.get('/', getPersonsAction);
+routerPersons.get('/:id', checkValidBsonId, getPersonAction);
+routerPersons.delete('/:id', checkValidBsonId, deletePersonAction);
 
-routerUsers.post('/', [
+routerPersons.post('/', [
     checkEmptyRequestBody,
     checkUnexpectedFields('name', 'age', 'number'),
 
@@ -31,9 +32,9 @@ routerUsers.post('/', [
     .isLength({min: 10, max: 17}).withMessage('Number field must be between 10 and 17 characters'),
 
     checkInvalidFields
-], createUserAction);
+], createPersonAction);
   
-routerUsers.put('/:id', [
+routerPersons.put('/:id', [
     checkValidBsonId,
     checkEmptyRequestBody,
     checkUnexpectedFields('name', 'age', 'number'),
@@ -50,8 +51,8 @@ routerUsers.put('/:id', [
     .isLength({ min: 10, max: 17 }).withMessage('Number field must be between 10 and 17 characters'),
 
     checkInvalidFields
-], updateUserAction);
+], updatePersonAction);
 
-routerUsers.all('/', (_, res)=> {res.status(405).send('Method not allowed')})
+routerPersons.all('/', (_, res)=> {res.status(405).send('Method not allowed')})
 
-module.exports = routerUsers;
+module.exports = routerPersons;

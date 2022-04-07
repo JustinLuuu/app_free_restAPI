@@ -1,6 +1,6 @@
 [
     {
-        "name": "users",
+        "name": "persons",
         "methods": ["GET", "GET/:id", "POST", "PUT:/id", "DELETE/:id"],
         "sampleData": {
             "name": "Justin Jr. Minaya",
