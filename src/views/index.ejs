@@ -29,10 +29,11 @@
                     <a href="https://<%= hostname %>/api/<%= route.name %>" target="_blank">
                         https://<%= hostname %>/api/<%= route.name %>/
                     </a> 
-                    <p> 
-                        <%= route.methods.join(', ') %> <br/>
-                        <%= JSON.stringify(route.sampleData,null, 1) %> 
-                    </p>
+                    
+                    <div> 
+                       <p> <%= route.methods.join(', ') %> </p> <br/>
+                        <pre> <%= JSON.stringify(route.sampleData,null, 1) %> </pre>
+                    </div>
                 </li> <br/><br/><br/>
             <% 
            } 
