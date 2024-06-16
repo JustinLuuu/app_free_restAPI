@@ -1,37 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        html, body { text-align: center; }
-        h1{background-color: aqua; margin-bottom: 55px}
-        ul{list-style: none;}
-        li{ font-size: 2em;}
-        li a {color: blue}
-        span{display: block;}
-        p{font-size: 25px;}
+        html,
+        body {
+            text-align: center;
+        }
 
+        h1 {
+            background-color: aqua;
+            margin-bottom: 55px
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            font-size: 2em;
+        }
+
+        li a {
+            color: blue
+        }
+
+        span {
+            display: block;
+        }
+
+        p {
+            font-size: 25px;
+        }
     </style>
     <title>freerestapi</title>
 </head>
 
 <body>
     <header>
-    <h1>Available routes on this domain</h1> 
-   </header>
+        <h1>Available routes</h1>
+    </header>
     <ul>
-        <% for(const route of routesData) { 
-            %>
-                <li>
-                    <span><mark> <%= route.name %>: </mark></span> 
-                    <a href="https://<%= hostname %>/api/<%= route.name %>" target="_blank">
-                        https://<%= hostname %>/api/<%= route.name %>/
-                    </a> 
-                    
-                    <div> 
-                       <p> <%= route.methods.join(', ') %> </p> <br/>
+        <% for(const route of routesData) { %>
+            <li>
+                <span><mark>
+                        <%= route.name %>:
+                    </mark></span>
+                <a href="https://<%= hostname %>/api/<%= route.name %>" target="_blank">
+                    https://<%= hostname %>/api/<%= route.name %>/
+                </a>
+
+                <div>
+                    <p>
+                        <%= route.methods.join(', ') %> </p> <br/>
                         <pre> <%= JSON.stringify(route.sampleData,null, 1) %> </pre>
                     </div>
                 </li> <br/><br/><br/>
@@ -41,10 +65,10 @@
     </ul>
 
     <script>
-        const h1= document.querySelector('h1');
-        setInterval(() => {
+        const h1 = document.querySelector(' h1'); setInterval(() => {
             h1.style.color = (h1.style.color === 'black' ? 'red' : 'black');
         }, 2000);
     </script>
 </body>
+
 </html>

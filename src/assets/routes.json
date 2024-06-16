@@ -3,7 +3,7 @@
         "name": "persons",
         "methods": ["GET", "GET/:id", "POST", "PUT:/id", "DELETE/:id"],
         "sampleData": {
-            "name": "Justin Jr. Minaya",
+            "name": "Justin Jr.",
             "age": 20,
             "number": "0499817752"
         }
